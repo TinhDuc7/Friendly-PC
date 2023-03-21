@@ -1,0 +1,38 @@
+const dictionary = {
+    VI: {
+        'H_Mode': 'Chế độ sáng tối',
+        'H_Location': 'Vị trí cửa hàng',
+        'H_Supports': 'Hỗ trợ',
+        'H_Sps_1': 'Tra cứu đơn hàng',
+        'H_Sps_2': 'Tra cứu bảo hành',
+        'H_Sps_3': 'Góp ý, khiếu nại',
+        'H_Sps_4': 'Chính sách, quy định chung',
+        'H_Promotions': 'Khuyến mại',
+        'H_Prs_1': 'Khuyến mại PC',
+        'H_Prs_2': 'Khuyến mại linh kiện',
+        'H_Prs_3': 'Khuyến mại sinh viên, học sinh',
+        'H_Account': 'Tài khoản',
+        'H_Acc_1': 'Đăng nhập',
+        'H_Acc_2': 'Đăng ký',
+        'H_Search': 'Nhập tên sản phẩm, từ khóa cần tìm...',
+    },
+    EN: {
+        'H_Mode': 'Dark Mode',
+        'H_Location': 'Locations',
+        'H_Supports': 'Supports',
+        'H_Sps_1': 'Order status',
+        'H_Sps_2': 'Warranty',
+        'H_Sps_3': 'Feedback, report',
+        'H_Sps_4': 'Regulations',
+        'H_Promotions': 'Promotions',
+        'H_Prs_1': 'PC Promotions ',
+        'H_Prs_2': 'PC components Promotions',
+        'H_Prs_3': 'Discount for students',
+        'H_Account': 'Account',
+        'H_Acc_1': 'Login',
+        'H_Acc_2': 'Register',
+        'H_Search': 'Enter a keyword to search...',
+    },
+}
+
+export { dictionary };
