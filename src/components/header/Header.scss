@@ -1,0 +1,33 @@
+.navbar {
+  // background-color: #0c2461;
+
+  #responsive-navbar-nav {
+    justify-content: space-between;
+    .items-left {
+      Form {
+        text-align: center;
+        margin: auto;
+        .form-check.form-switch {
+          .form-switch.form-check-input {
+            filter: grayscale(100%);
+          }
+          // label.form-check-label {
+          //   color: white;
+          // }
+          .form-switch.form-check-input:focus {
+            filter: grayscale(100%);
+          }
+        }
+      }
+    }
+    .items-right {
+      a#collasible-nav-dropdown {
+        // color: #fff;
+      }
+    }
+  }
+  button#button-addon2\ {
+    color: white;
+    border: 1px solid white;
+  }
+}
