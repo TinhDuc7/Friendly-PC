@@ -1,12 +1,12 @@
-import debounce from "lodash";
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { React, useState, useEffect, useRef, useCallback } from "react";
 import ReactMapGL, { GeolocateControl, Marker } from "react-map-gl";
+import '../../../assets/scss/mapbox.scss';
 
 //component
-import { locationFriendly } from "../../../api/main";
 
-export const MapboxFriendlyPC = () => {
-  const [locationFriendlyPC, setLocationFriendlyPC] = useState(null);
+export const MapboxFriendlyPC = (data) => {
+  console.log(data);
   const [searchResultLayer, setSearchResult] = useState(null);
   const [lng, setLng] = useState(0);
   const [lat, setLat] = useState(0);
@@ -16,8 +16,9 @@ export const MapboxFriendlyPC = () => {
     zoom: 10,
   });
 
+
   return (
-    <div style={{ width: 750, height: 500 }}>
+    <div style={{width: '750px', height: '500px', display: "block"}}>
       <ReactMapGL
         mapboxAccessToken={process.env.REACT_APP_MAP_TOKEN}
         initialViewState={viewport}
@@ -33,8 +34,8 @@ export const MapboxFriendlyPC = () => {
             })
           }
         />
-        {!!locationFriendlyPC &&
-          locationFriendlyPC.map((item) => (
+        {!!data.locationFriendlyPC &&
+          data.locationFriendlyPC.map((item) => (
             <Marker
               key={item.id}
               longitude={item.geometry.coordinates[0]}
