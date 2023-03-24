@@ -140,37 +140,46 @@ const Header = () => {
                 title={dictionary[crrThemeContext.language]["H_Account"]}
                 id="collasible-nav-dropdown"
               >
-                <NavDropdown.Item href="#action/3.1">
+                <NavDropdown.Item href="/">
                   {dictionary[crrThemeContext.language]["H_Acc_1"]}
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
-                  {dictionary[crrThemeContext.language]["H_Acc_1"]}
+                  {dictionary[crrThemeContext.language]["H_Acc_2"]}
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </div>
         </Navbar.Collapse>
       </Container>
-      <InputGroup className="mb-3 w-50">
-        <Form.Control
-          placeholder={dictionary[crrThemeContext.language]["H_Search"]}
-          aria-label="enterSearch"
-          aria-describedby="basic-addon2"
-          autoFocus
-        />
-        <Button variant="outline-secondary" id="button-addon2 ">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            className="bi bi-search"
-            viewBox="0 0 16 16"
-          >
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-          </svg>
-        </Button>
-      </InputGroup>
+      <div className=" bottomItems mt-4 d-flex w-100 justify-content-center ">
+        <InputGroup className="mb-3 w-50">
+          <Form.Control
+            placeholder={dictionary[crrThemeContext.language]["H_Search"]}
+            aria-label="enterSearch"
+            aria-describedby="basic-addon2"
+            autoFocus
+          />
+          <Button variant="outline-secondary" id="button-addon2 ">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              className="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+          </Button>
+        </InputGroup>
+        <Button
+          className="btn-cart w-15  ms-3 ms-lg-5"
+          variant="warning"
+          size="sm"
+        >
+          Cart (0)
+        </Button>{" "}
+      </div>
     </Navbar>
   );
 };
