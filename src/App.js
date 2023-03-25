@@ -2,6 +2,7 @@ import { useState, createContext, useEffect } from 'react';
 import './App.css';
 import { Contact } from './components/Contact/Location/Contact';
 import MapboxFriendlyPC from './components/Contact/Location/MapboxFriendlyPC';
+import Dashboard from './components/Dashboard';
 import Header from './components/header/Header';
 import Home from './components/Home/Home';
 import './theme/theme.scss';
@@ -43,7 +44,8 @@ function App() {
 
       <div className={`App ${theme}`}>
         <Header />
-        <Home />
+        {/* <Home /> */}
+        <Dashboard />
       </div>
     </ThemeContext.Provider>
   );
