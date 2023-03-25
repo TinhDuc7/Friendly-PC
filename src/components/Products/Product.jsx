@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCart } from "../../redux/action";
 import Skeleton from "react-loading-skeleton";
 import { BACKEND_DOMAIN_API } from "../../global/Backend-api";
+import { ThemeContext } from "../../App.js";
+import { dictionary } from "../../language/language.js";
 
 const Product = () => {
   const { id } = useParams();
@@ -25,6 +27,17 @@ const Product = () => {
       setLoading(false);
     };
     getProduct();
+  }, []);
+
+  const crrThemeContext = useContext(ThemeContext);
+
+  useEffect(() => {
+    const crrTheme = localStorage.getItem("theme");
+    if (crrTheme) {
+      crrThemeContext.setThemeValue(crrTheme);
+    } else {
+      localStorage.setItem("theme", crrThemeContext.themeValue);
+    }
   }, []);
 
   const Loading = () => {
@@ -61,7 +74,8 @@ const Product = () => {
           <h4 className="text-uppercase">{product.category}</h4>
           <h1 className="display-5">{product.title}</h1>
           <p className="lead fw-bolder">
-            Rating {product.rating && product.rating.rate}
+            {dictionary[crrThemeContext.language]["P_RATE"]}{" "}
+            {product.rating && product.rating.rate}
             <i className="fa fa-star"></i>
           </p>
           <h3 className="display-6 fw-bold my-4">$ {product.price}</h3>
@@ -70,10 +84,10 @@ const Product = () => {
             className="btn btn-outline-warning px-4 py-2"
             onClick={() => addProduct(product)}
           >
-            Add to Cart
+            {dictionary[crrThemeContext.language]["P_ADD"]}
           </button>
           <NavLink to="/cart" className="btn btn-info ms-2 px-3 py-2">
-            Go to Cart
+            {dictionary[crrThemeContext.language]["P_GO"]}
           </NavLink>
         </div>
       </>
