@@ -100,7 +100,7 @@ const Header = () => {
           </div>
           <div className="items-right">
             <Nav className="me-auto">
-              <Nav.Link href="#features" className="text-light">
+              <Nav.Link href="/contact" className="text-light">
                 {dictionary[crrThemeContext.language]["H_Location"]}
               </Nav.Link>
               <NavDropdown

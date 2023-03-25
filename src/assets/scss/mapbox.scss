@@ -129,6 +129,13 @@
     .point_Detail {
       width: 100%;
     }
+
+    .button-find-way {
+      display: block;
+      width: 20%;
+      height: 15%;
+      margin-left: 45px;
+    }
   }
 
   .branch__Info-detail {
@@ -209,7 +216,7 @@
   font-size: 1rem;
   line-height: 1.8;
   font-weight: 700;
-  color: var(--text-color);
+  color: #cc8023ce;
 }
 
 .info__underline {
