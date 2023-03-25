@@ -13,6 +13,7 @@ import {
 import { ThemeContext } from "../../App.js";
 import logo from "../../assets/imgs/friendly-pc-logo.png";
 import { dictionary } from "../../language/language.js";
+import { useSelector } from "react-redux";
 import "./Header.scss";
 
 const Header = () => {
@@ -26,7 +27,6 @@ const Header = () => {
 
   //Theme dark mode
   const crrThemeContext = useContext(ThemeContext);
-  console.log(crrThemeContext);
 
   useEffect(() => {
     const crrTheme = localStorage.getItem("theme");
@@ -38,28 +38,27 @@ const Header = () => {
   }, []);
 
   const handleDarkMode = (e) => {
-    console.log(e.target.checked);
     crrThemeContext.setThemeValue(
       crrThemeContext.themeValue === "light" ? "dark" : "light"
     );
   };
   const handleLanguage = (e) => {
-    console.log(e.target.checked);
     setRadioValue(e.currentTarget.value);
     crrThemeContext.setLanguage(
       crrThemeContext.language === "VI" ? "EN" : "VI"
     );
   };
 
+  const state = useSelector((state) => state.handleCart);
   return (
     <Navbar
       collapseOnSelect
       expand="lg"
       variant="dark"
-      className="navbar d-flex flex-column"
+      className="navbar navbarC d-flex flex-column shadow-lg border-bottom border-dark-subtle"
     >
       <Container className="container">
-        <Navbar.Brand href="#home" className="navbar-brand">
+        <Navbar.Brand href="/" className="navbar-brand">
           <img
             src={logo}
             alt="Logo Brand"
@@ -76,7 +75,7 @@ const Header = () => {
                   key={idx}
                   id={`radio-${idx}`}
                   type="radio"
-                  variant={idx % 2 ? "outline-primary" : "outline-danger"}
+                  variant={idx % 2 ? "outline-warning" : "outline-danger"}
                   name="radio"
                   value={radio.value}
                   checked={radioValue === radio.value}
@@ -177,7 +176,7 @@ const Header = () => {
           variant="warning"
           size="sm"
         >
-          Cart (0)
+          Cart ({state.length})
         </Button>{" "}
       </div>
     </Navbar>

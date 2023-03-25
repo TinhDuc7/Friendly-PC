@@ -1,10 +1,13 @@
 import { useState, createContext, useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import { Contact } from './components/Contact/Location/Contact';
 import MapboxFriendlyPC from './components/Contact/Location/MapboxFriendlyPC';
 import Header from './components/header/Header';
 import Home from './components/Home/Home';
+import { Routes, Route } from 'react-router-dom';
 import './theme/theme.scss';
+import Products from './components/Products/Products';
+import Product from './components/Products/Product';
 
 // Theme dark mode
 
@@ -43,7 +46,11 @@ function App() {
 
       <div className={`App ${theme}`}>
         <Header />
-        <Home />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/products' element={<Products />} />
+          <Route path='/products/:id' element={<Product />} />
+        </Routes>
       </div>
     </ThemeContext.Provider>
   );
