@@ -176,7 +176,7 @@ const Register = () => {
         <div className="input-form">
           <button type="submit">Đăng ký</button>
           <p>
-            Bạn đã có tài khoản? <NavLink to="">Đăng nhập</NavLink>
+            Bạn đã có tài khoản? <NavLink to="/login">Đăng nhập</NavLink>
           </p>
         </div>
       </form>
