@@ -8,6 +8,7 @@ import { Routes, Route } from 'react-router-dom';
 import './theme/theme.scss';
 import Products from './components/Products/Products';
 import Product from './components/Products/Product';
+import Login from './components/Login/Login';
 
 // Theme dark mode
 
@@ -50,6 +51,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/products' element={<Products />} />
           <Route path='/products/:id' element={<Product />} />
+           <Route path='/login' element={<Login/>}/>
         </Routes>
       </div>
     </ThemeContext.Provider>

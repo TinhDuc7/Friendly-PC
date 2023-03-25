@@ -139,7 +139,7 @@ const Header = () => {
                 title={dictionary[crrThemeContext.language]["H_Account"]}
                 id="collasible-nav-dropdown"
               >
-                <NavDropdown.Item href="/">
+                <NavDropdown.Item href="./login">
                   {dictionary[crrThemeContext.language]["H_Acc_1"]}
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
