@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { locationFriendly } from "../../../api/main";
+import ListLocation from "../LocationDetail/ListLocation";
 import MapboxFriendlyPC from "./MapboxFriendlyPC";
 
 export const Contact = () => {
@@ -8,7 +9,6 @@ export const Contact = () => {
   const loadLociton = useCallback(async (endPointAPI) => {
     try {
       const response = await locationFriendly(endPointAPI);
-      // console.log(response.data.features.length)
       setLocationFriendlyPC(response.data.features);
     } catch (error) {
         console.log(error);
@@ -21,7 +21,10 @@ export const Contact = () => {
 
   return (
     <>
-      {!!locationFriendlyPC && locationFriendlyPC.length > 0 && (<MapboxFriendlyPC locationFriendlyPC={locationFriendlyPC} />)}
+    <div className="father-contact">
+        {!!locationFriendlyPC && locationFriendlyPC.length > 0 && (<MapboxFriendlyPC locationFriendlyPC={locationFriendlyPC} />)}
+        {!!locationFriendlyPC && locationFriendlyPC.length >0 && <ListLocation locationFriendlyPC={locationFriendlyPC}/>}
+    </div>
     </>
     );
 };
