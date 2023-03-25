@@ -1,9 +1,16 @@
 import { Card } from "@mui/material";
 
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "../../../assets/scss/mapbox.scss";
+import { Intermediary } from "../Location/Intermediary";
 
 export const ListLocation = (data) => {
+  const [getDataLocation, setgetDataLocation] = useState();
+
+  const getLocationOfList = (item) => {
+    setgetDataLocation(item)
+  }
+
   return (
     <>
       <div className="branch">
@@ -12,7 +19,11 @@ export const ListLocation = (data) => {
           <div className="branch__Info-detail">
             {!!data.locationFriendlyPC &&
               data.locationFriendlyPC.map((item, index) => (
-                <div className="leaderboard__branch" key={index}>
+                <div
+                  className="leaderboard__branch"
+                  key={index}
+                  onClick={() => getLocationOfList(item)}
+                >
                   <span className="leaderboard__branch-name">
                     {item.properties.name}
                   </span>
@@ -21,6 +32,7 @@ export const ListLocation = (data) => {
           </div>
         </Card>
       </div>
+      <Intermediary getLocationOfList={getDataLocation}/>
     </>
   );
 };
