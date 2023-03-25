@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BACKEND_DOMAIN_API } from "../../global/Backend-api";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
+import { ThemeContext } from "../../App.js";
+import { dictionary } from "../../language/language.js";
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -24,6 +26,17 @@ const Products = () => {
       };
     };
     getProducts();
+  }, []);
+
+  const crrThemeContext = useContext(ThemeContext);
+
+  useEffect(() => {
+    const crrTheme = localStorage.getItem("theme");
+    if (crrTheme) {
+      crrThemeContext.setThemeValue(crrTheme);
+    } else {
+      localStorage.setItem("theme", crrThemeContext.themeValue);
+    }
   }, []);
 
   const Loading = () => {
@@ -57,73 +70,73 @@ const Products = () => {
             className="btn btn-light me-2"
             onClick={() => setFilter(data)}
           >
-            All
+            {dictionary[crrThemeContext.language]["CATE_1"]}
           </button>
           <button
             className="btn btn-light me-2"
             onClick={() => filterProduct("Dedicated PC")}
           >
-            Dedicated PC
+            {dictionary[crrThemeContext.language]["CATE_2"]}
           </button>
           <button
             className="btn btn-light me-2"
             onClick={() => filterProduct("Office PC")}
           >
-            Office PC
+            {dictionary[crrThemeContext.language]["CATE_3"]}
           </button>
           <button
             className="btn btn-light me-2"
             onClick={() => filterProduct("CPU")}
           >
-            CPU
+            {dictionary[crrThemeContext.language]["CATE_4"]}
           </button>
           <button
             className="btn btn-light me-2"
             onClick={() => filterProduct("Mainboard")}
           >
-            Mainboard
+            {dictionary[crrThemeContext.language]["CATE_5"]}
           </button>
           <button
             className="btn btn-light me-2"
             onClick={() => filterProduct("VGA")}
           >
-            VGA
+            {dictionary[crrThemeContext.language]["CATE_6"]}
           </button>
           <button
             className="btn btn-light me-2"
             onClick={() => filterProduct("RAM")}
           >
-            RAM
+            {dictionary[crrThemeContext.language]["CATE_7"]}
           </button>
           <button
             className="btn btn-light me-2"
             onClick={() => filterProduct("SSD")}
           >
-            SSD
+            {dictionary[crrThemeContext.language]["CATE_8"]}
           </button>
           <button
             className="btn btn-light me-2"
             onClick={() => filterProduct("PSU")}
           >
-            PSU
+            {dictionary[crrThemeContext.language]["CATE_9"]}
           </button>
           <button
             className="btn btn-light me-2"
             onClick={() => filterProduct("Screen")}
           >
-            Screen
+            {dictionary[crrThemeContext.language]["CATE_10"]}
           </button>
           <button
             className="btn btn-light me-2"
             onClick={() => filterProduct("Mouse Keys")}
           >
-            Mouse, Keys
+            {dictionary[crrThemeContext.language]["CATE_11"]}
           </button>
           <button
             className="btn btn-light me-2"
             onClick={() => filterProduct("Case")}
           >
-            Case
+            {dictionary[crrThemeContext.language]["CATE_12"]}
           </button>
         </div>
         {filter.map((product) => {
@@ -146,7 +159,7 @@ const Products = () => {
                       to={`/products/${product.id}`}
                       className="btn btn-outline-dark"
                     >
-                      Buy Now
+                      {dictionary[crrThemeContext.language]["BUY_N"]}
                     </NavLink>
                   </div>
                 </div>
@@ -161,7 +174,9 @@ const Products = () => {
     <div className="container my-5 py-5">
       <div className="row">
         <div className="col-12 mb-5">
-          <h1 className="display-6 fw-bolder text-center">Lastest Products</h1>
+          <h1 className="display-6 fw-bolder text-center">
+            {dictionary[crrThemeContext.language]["T_H1"]}
+          </h1>
           <hr />
         </div>
       </div>

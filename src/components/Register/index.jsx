@@ -58,7 +58,7 @@ const Register = () => {
         );
         if (requestRegiter.status === 201) {
           alert("Đăng ký thành công!");
-          navigate("/auth/login");
+          navigate("/login");
         }
       } else {
         alert("Mật khẩu nhập lại không trùng khớp!");
