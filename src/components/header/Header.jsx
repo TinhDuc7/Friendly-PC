@@ -13,6 +13,8 @@ import {
 import { ThemeContext } from "../../App.js";
 import logo from "../../assets/imgs/friendly-pc-logo.png";
 import { dictionary } from "../../language/language.js";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import "./Header.scss";
 
 const Header = () => {
@@ -26,7 +28,6 @@ const Header = () => {
 
   //Theme dark mode
   const crrThemeContext = useContext(ThemeContext);
-  console.log(crrThemeContext);
 
   useEffect(() => {
     const crrTheme = localStorage.getItem("theme");
@@ -38,34 +39,35 @@ const Header = () => {
   }, []);
 
   const handleDarkMode = (e) => {
-    console.log(e.target.checked);
     crrThemeContext.setThemeValue(
       crrThemeContext.themeValue === "light" ? "dark" : "light"
     );
   };
   const handleLanguage = (e) => {
-    console.log(e.target.checked);
     setRadioValue(e.currentTarget.value);
     crrThemeContext.setLanguage(
       crrThemeContext.language === "VI" ? "EN" : "VI"
     );
   };
 
+  const state = useSelector((state) => state.handleCart);
   return (
     <Navbar
       collapseOnSelect
       expand="lg"
       variant="dark"
-      className="navbar d-flex flex-column"
+      className="navbar navbarC d-flex flex-column shadow-lg border-bottom border-dark-subtle"
     >
       <Container className="container">
-        <Navbar.Brand href="#home" className="navbar-brand">
-          <img
-            src={logo}
-            alt="Logo Brand"
-            className="logo py-0"
-            style={{ width: "7rem" }}
-          />
+        <Navbar.Brand className="navbar-brand">
+          <NavLink to="/home">
+            <img
+              src={logo}
+              alt="Logo Brand"
+              className="logo py-0"
+              style={{ width: "7rem" }}
+            />
+          </NavLink>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -76,7 +78,7 @@ const Header = () => {
                   key={idx}
                   id={`radio-${idx}`}
                   type="radio"
-                  variant={idx % 2 ? "outline-primary" : "outline-danger"}
+                  variant={idx % 2 ? "outline-warning" : "outline-danger"}
                   name="radio"
                   value={radio.value}
                   checked={radioValue === radio.value}
@@ -140,37 +142,54 @@ const Header = () => {
                 title={dictionary[crrThemeContext.language]["H_Account"]}
                 id="collasible-nav-dropdown"
               >
-                <NavDropdown.Item href="#action/3.1">
-                  {dictionary[crrThemeContext.language]["H_Acc_1"]}
+                <NavDropdown.Item>
+                  <NavLink to="/login">
+                    {dictionary[crrThemeContext.language]["H_Acc_1"]}
+                  </NavLink>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  {dictionary[crrThemeContext.language]["H_Acc_1"]}
+                <NavDropdown.Item>
+                  <NavLink to="/register">
+                    {dictionary[crrThemeContext.language]["H_Acc_2"]}
+                  </NavLink>
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </div>
         </Navbar.Collapse>
       </Container>
-      <InputGroup className="mb-3 w-50">
-        <Form.Control
-          placeholder={dictionary[crrThemeContext.language]["H_Search"]}
-          aria-label="enterSearch"
-          aria-describedby="basic-addon2"
-          autoFocus
-        />
-        <Button variant="outline-secondary" id="button-addon2 ">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            className="bi bi-search"
-            viewBox="0 0 16 16"
+      <div className=" bottomItems mt-4 d-flex w-100 justify-content-center ">
+        <InputGroup className="mb-3 w-50">
+          <Form.Control
+            placeholder={dictionary[crrThemeContext.language]["H_Search"]}
+            aria-label="enterSearch"
+            aria-describedby="basic-addon2"
+            autoFocus
+          />
+          <Button variant="outline-secondary" id="button-addon2 ">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              className="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+          </Button>
+        </InputGroup>
+        <NavLink to="/cart">
+          <Button
+            className="btn-cart w-15  ms-3 ms-lg-5"
+            variant="warning"
+            size="sm"
           >
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-          </svg>
-        </Button>
-      </InputGroup>
+            <i className="fa fa-shopping-cart me-1 cart-icon ">
+              <span className="cart-num">{state.length}</span>
+            </i>
+          </Button>{" "}
+        </NavLink>
+      </div>
     </Navbar>
   );
 };
