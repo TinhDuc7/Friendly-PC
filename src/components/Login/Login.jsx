@@ -1,4 +1,4 @@
- import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -23,7 +23,7 @@ const validation = Yup.object({
 });
 
 const Login = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const {
     values,
     touched,
@@ -39,7 +39,6 @@ const Login = () => {
     },
     validationSchema: validation,
     onSubmit(values) {
-      
       getAllUser(values);
     },
   });
@@ -50,9 +49,9 @@ const Login = () => {
       (item) => item.email === user.email
     );
     if (findUserLogin && findUserLogin.password === user.password) {
-       alert('dang nhap thanh cong');
+      alert("dang nhap thanh cong");
       localStorage.setItem("userLogin", JSON.stringify(user));
-       navigate("/home");
+      navigate("/home");
     } else {
       alert("sai tai khoan mau khai");
     }
@@ -98,7 +97,13 @@ const Login = () => {
             )}
 
             <div className="text-center pt-1 mb-5 pb-1">
-              <MDBBtn className="mb-4 w-100 gradient-custom-2" type="submit"  onClick={() => {navigate('/auth/home');}} >
+              <MDBBtn
+                className="mb-4 w-100 gradient-custom-2"
+                type="submit"
+                onClick={() => {
+                  navigate("/home");
+                }}
+              >
                 Sign in
               </MDBBtn>
               <a className="text-muted" href="#!">
@@ -112,7 +117,11 @@ const Login = () => {
                 outline
                 className="mx-2"
                 color="danger"
-                 type="button" value='Đăng ký' onClick={() => {navigate('/auth/register');}}
+                type="button"
+                value="Đăng ký"
+                onClick={() => {
+                  navigate("/register");
+                }}
               >
                 Register
               </MDBBtn>
