@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { uuid } from "../../utils";
 import axios from "axios";
-import { BACKEND_DOMAIN_API_An } from "../../global/Backend-api";
+import { BACKEND_DOMAIN_API } from "../../global/Backend-api";
 
 const validattion = Yup.object({
   email: Yup.string("Bạn cần nhập đúng định dạng email!")
@@ -42,9 +42,7 @@ const Register = () => {
   });
 
   const handleRegister = async (user) => {
-    const listPrevUser = await axios.get(
-      `${BACKEND_DOMAIN_API_An}/api/v1/users`
-    );
+    const listPrevUser = await axios.get(`${BACKEND_DOMAIN_API}/api/v1/users`);
     const arrUser = listPrevUser.data;
     const findExistUser = arrUser.findIndex(
       (item) => item.email === user.email
@@ -53,8 +51,9 @@ const Register = () => {
       alert("Email đã tồn tại!");
     } else {
       if (user.password === user.cfPassword) {
+        delete user.cfPassword;
         const requestRegiter = await axios.post(
-          `${BACKEND_DOMAIN_API_An}/api/v1/users`,
+          `${BACKEND_DOMAIN_API}/api/v1/users`,
           user
         );
         if (requestRegiter.status === 201) {
@@ -181,8 +180,6 @@ const Register = () => {
           </p>
         </div>
       </form>
-
-      {/* <button type="button" class="btn btn-success">Success</button> */}
     </div>
   );
 };
