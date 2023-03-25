@@ -14,6 +14,7 @@ import { ThemeContext } from "../../App.js";
 import logo from "../../assets/imgs/friendly-pc-logo.png";
 import { dictionary } from "../../language/language.js";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import "./Header.scss";
 
 const Header = () => {
@@ -58,13 +59,15 @@ const Header = () => {
       className="navbar navbarC d-flex flex-column shadow-lg border-bottom border-dark-subtle"
     >
       <Container className="container">
-        <Navbar.Brand href="/" className="navbar-brand">
-          <img
-            src={logo}
-            alt="Logo Brand"
-            className="logo py-0"
-            style={{ width: "7rem" }}
-          />
+        <Navbar.Brand className="navbar-brand">
+          <NavLink to="/home">
+            <img
+              src={logo}
+              alt="Logo Brand"
+              className="logo py-0"
+              style={{ width: "7rem" }}
+            />
+          </NavLink>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -139,11 +142,15 @@ const Header = () => {
                 title={dictionary[crrThemeContext.language]["H_Account"]}
                 id="collasible-nav-dropdown"
               >
-                <NavDropdown.Item href="./login">
-                  {dictionary[crrThemeContext.language]["H_Acc_1"]}
+                <NavDropdown.Item>
+                  <NavLink to="/login">
+                    {dictionary[crrThemeContext.language]["H_Acc_1"]}
+                  </NavLink>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  {dictionary[crrThemeContext.language]["H_Acc_2"]}
+                <NavDropdown.Item>
+                  <NavLink to="/register">
+                    {dictionary[crrThemeContext.language]["H_Acc_2"]}
+                  </NavLink>
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
@@ -171,13 +178,17 @@ const Header = () => {
             </svg>
           </Button>
         </InputGroup>
-        <Button
-          className="btn-cart w-15  ms-3 ms-lg-5"
-          variant="warning"
-          size="sm"
-        >
-          Cart ({state.length})
-        </Button>{" "}
+        <NavLink to="/cart">
+          <Button
+            className="btn-cart w-15  ms-3 ms-lg-5"
+            variant="warning"
+            size="sm"
+          >
+            <i className="fa fa-shopping-cart me-1 cart-icon ">
+              <span className="cart-num">{state.length}</span>
+            </i>
+          </Button>{" "}
+        </NavLink>
       </div>
     </Navbar>
   );

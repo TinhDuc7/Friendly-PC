@@ -10,7 +10,7 @@ export const addCart = (product) => {
 //For delete item from Cart
 export const delCart = (product) => {
     return {
-        type: 'DELITEM',
+        type: 'DELELTEITEM',
         PAYLOAD: product
     }
 }

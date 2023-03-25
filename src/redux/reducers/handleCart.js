@@ -19,16 +19,24 @@ const handleCart = (state = cart, action) => {
                 }]
             }
             break;
-        case "DELITEM":
+
+        case "DELETEITEM":
             const exist1 = state.find((x) => x.id === product.id)
             if (exist1) {
                 if (exist1.qty === 1) {
-                    return state.filter((x) => x.id !== exist1.id)
+                    return (state.filter((x) => x.id !== exist1.id))
                 } else {
-                    return state.map((x) =>
-                        x.id === product.id ? { ...x, qty: x.qty - 1 } : x)
+                    return (state.map((x) =>
+                        x.id === product.id ? { ...x, qty: x.qty - 1 } : x))
                 }
             }
+            break;
+
+        case "HAPUS":
+            const exist2 = state.find((x) => x.id === product.id)
+            return state.filter((x) => x.id !== exist2.id);
+
+
             break;
         default:
             return state;
